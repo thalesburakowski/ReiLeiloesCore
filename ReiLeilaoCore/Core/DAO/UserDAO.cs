@@ -12,8 +12,7 @@ namespace ReiLeilaoCore.Core.DAO
 {
     public class UserDAO : IDAO
     {
-        const string url = "localhost:3000/";
-        const string endpoint = "user";
+        const string url = "http://localhost:3000/";
 
         public void Alterar(Entity entidade)
         {
@@ -22,25 +21,39 @@ namespace ReiLeilaoCore.Core.DAO
 
         public List<Entity> Consultar(Entity entidade)
         {
-            List<KeyValue> parameterList = new List<KeyValue>()
+            string json = null;
+            if (String.IsNullOrEmpty(entidade.Id))
             {
-                new KeyValue()
-                {
-                    Key = "id",
-                    Value = entidade.Id
-                }
-            };
-            List<KeyValue> urlSegmentList = null;
-            string json = new RestConnection().GetResponseRest(url, endpoint, Method.POST, parameterList, urlSegmentList);
-            List<User> objList = JsonConvert.DeserializeObject<List<User>>(json);
+                string endpoint = "user/";
+                json = new RestConnection().GetRequest(url, endpoint);
+
+            }
+            else
+            {
+                string endpoint = "user/";
+                endpoint = endpoint + entidade.Id;
+                json = new RestConnection().GetRequestById(url, endpoint, entidade);
+
+            }
+
+            //List<KeyValue> parameterList = new List<KeyValue>()
+            //{
+            //    new KeyValue()
+            //    {
+            //        Key = "id",
+            //        Value = entidade.Id
+            //    }
+            //};
+            //string json = new RestConnection().GetResponseRestPost(url, endpoint, parameterList, urlSegmentList);
+            User objList = JsonConvert.DeserializeObject<User>(json);
 
             var objReturn = new List<Entity>();
-
-            if (objList != null)
-                foreach (var obj in objList)
-                {
-                    objReturn.Add(obj);
-                }
+            objReturn.Add(objList);
+            //if (objList != null)
+            //    foreach (var obj in objList)
+            //    {
+            //        objReturn.Add(obj);
+            //    }
 
             return objReturn;
             //throw new NotImplementedException();

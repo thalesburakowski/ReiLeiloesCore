@@ -12,14 +12,13 @@ namespace ReiLeilaoCore.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        // GET api/values
+        // GET api/user
         //[HttpGet]
         //public ActionResult<IEnumerable<string>> Get()
         //{
         //    return new string[] { "value1", "value2" };
         //}
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
