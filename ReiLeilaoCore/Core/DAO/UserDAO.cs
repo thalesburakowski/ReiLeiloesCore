@@ -12,28 +12,25 @@ namespace ReiLeilaoCore.Core.DAO
 {
     public class UserDAO : IDAO
     {
-        const string url = "http://localhost:3000/";
 
         public void Alterar(Entity entidade)
         {
             throw new NotImplementedException();
         }
 
-        public List<Entity> Consultar(Entity entidade)
+        public List<Entity>Consultar(Entity entidade)
         {
             string json = null;
             if (String.IsNullOrEmpty(entidade.Id))
             {
                 string endpoint = "user/";
-                json = new RestConnection().GetRequest(url, endpoint);
-
+                json = new RestConnection().GetRequest(endpoint);
             }
             else
             {
                 string endpoint = "user/";
                 endpoint = endpoint + entidade.Id;
-                json = new RestConnection().GetRequestById(url, endpoint, entidade);
-
+                json = new RestConnection().GetRequestById(endpoint, entidade);
             }
 
             //List<KeyValue> parameterList = new List<KeyValue>()

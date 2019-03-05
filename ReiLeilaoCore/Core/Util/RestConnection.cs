@@ -19,14 +19,16 @@ namespace ReiLeilaoCore.Core.Util
 
         //}
 
-        public string GetRequest(string url, string endpoint)
+        const string url = "http://localhost:3000/";
+
+        public string GetRequest(string endpoint)
         {
             var client = new RestClient(url);
             var request = new RestRequest(endpoint, Method.GET);
             return client.Execute(request).Content;
         }
 
-        public string GetRequestById(string url, string endpoint, Entity entidade)
+        public string GetRequestById(string endpoint, Entity entidade)
         {
             var client = new RestClient(url);
             var request = new RestRequest(endpoint, Method.GET);
