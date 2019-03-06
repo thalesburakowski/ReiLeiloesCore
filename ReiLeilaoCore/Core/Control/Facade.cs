@@ -37,9 +37,14 @@ namespace ReiLeilaoCore.Core.Control
             var VerificarId = new VerificarId();
 
             // regras de negócio User
+            var VerificarEmail = new VerificarEmail();
+            var VerificarSenha = new VerificarSenha();
             var CriptografarSenha = new CriptografarSenha();
             var VerificarSenhaIgual = new VerificarSenhaIgual();
-            var VerificarEmail = new VerificarEmail();
+            var VerificarSenhaVerdadeira = new VerificarSenhaVerdadeira();
+            var CriptografarNovaSenha = new CriptografarNovaSenha();
+
+
 
             // regras de negócio Profile
 
@@ -49,26 +54,56 @@ namespace ReiLeilaoCore.Core.Control
 
             List<IStrategy> rnsConsultarUser = new List<IStrategy>();
             rnsConsultarUser.Add(VerificarEmail);
+            rnsConsultarUser.Add(VerificarSenha);
             rnsConsultarUser.Add(CriptografarSenha);
-            rnsConsultarUser.Add(VerificarSenhaIgual);
 
             List<IStrategy> rnsAlterarUser = new List<IStrategy>();
             rnsAlterarUser.Add(VerificarId);
+            rnsAlterarUser.Add(VerificarSenha);
+            rnsAlterarUser.Add(CriptografarSenha);
+            rnsAlterarUser.Add(VerificarSenhaVerdadeira);
+            rnsAlterarUser.Add(CriptografarNovaSenha);
+
 
             List<IStrategy> rnsExcluirUser = new List<IStrategy>();
             rnsExcluirUser.Add(VerificarId);
 
-
-
             var rnsUser = new Dictionary<string, List<IStrategy>>();
 
             rnsUser.Add("CONSULTAR", rnsConsultarUser);
+            rnsUser.Add("SALVAR", rnsSalvarUser);
+            rnsUser.Add("ALTERAR", rnsAlterarUser);
+            rnsUser.Add("EXCLUIR", rnsExcluirUser);
+
 
             _rns.Add(new User().GetType(), rnsUser);
         }
 
         public Result Alterar(Entity entidade)
         {
+            resultado = new Result();
+            Type nmClasse = entidade.GetType();
+
+            string msg = executarRegras(entidade, "ALTERAR");
+
+            if (msg == null)
+            {
+                IDAO dao = _daos[nmClasse];
+                try
+                {
+                    resultado.Entities = dao.Alterar(entidade);
+                }
+                catch (SqlException e)
+                {
+                    Console.Write(e.StackTrace);
+                    resultado.Msg = "Não foi possí­vel realizar a consulta!";
+                }
+            }
+            else
+            {
+                resultado.Msg = msg;
+            }
+            return resultado;
             throw new NotImplementedException();
         }
 
@@ -102,7 +137,31 @@ namespace ReiLeilaoCore.Core.Control
 
         public Result Excluir(Entity entidade)
         {
-            throw new NotImplementedException();
+            resultado = new Result();
+            Type nmClasse = entidade.GetType();
+
+            string msg = executarRegras(entidade, "EXCLUIR");
+
+            if (msg == null)
+            {
+                IDAO dao = _daos[nmClasse];
+                try
+                {
+                    dao.Excluir(entidade);
+                    resultado.Entities.Add(entidade);
+                }
+                catch (SqlException e)
+                {
+                    Console.Write(e.StackTrace);
+                    resultado.Msg = "Não foi possí­vel realizar a exclusão!";
+                }
+            }
+            else
+            {
+                resultado.Msg = msg;
+            }
+            return resultado;
+
         }
 
         public Result Salvar(Entity entidade)

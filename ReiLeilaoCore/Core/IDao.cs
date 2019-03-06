@@ -8,9 +8,9 @@ namespace ReiLeilaoCore.Core
 {
     public interface IDAO
     {
-        void Salvar(Entity entidade);
-        void Alterar(Entity entidade);
-        void Excluir(Entity entidade);
+        List<Entity> Salvar(Entity entidade);
+        List<Entity> Excluir(Entity entidade);
+        List<Entity> Alterar(Entity entidade);
         List<Entity> Consultar(Entity entidade);
     }
 }

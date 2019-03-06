@@ -13,57 +13,59 @@ namespace ReiLeilaoCore.Core.DAO
     public class UserDAO : IDAO
     {
 
-        public void Alterar(Entity entidade)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Entity>Consultar(Entity entidade)
+        public List<Entity> Alterar(Entity entidade)
         {
             string json = null;
-            if (String.IsNullOrEmpty(entidade.Id))
-            {
-                string endpoint = "user/";
-                json = new RestConnection().GetRequest(endpoint);
-            }
-            else
-            {
-                string endpoint = "user/";
-                endpoint = endpoint + entidade.Id;
-                json = new RestConnection().GetRequestById(endpoint, entidade);
-            }
+            var User = (User)entidade;
+            string endpoint = "user";
+            var Body = new User { Id = User.Id, Password = User.NewPassword };
+            json = new RestConnection().PutRequest(endpoint, Body);
 
-            //List<KeyValue> parameterList = new List<KeyValue>()
-            //{
-            //    new KeyValue()
-            //    {
-            //        Key = "id",
-            //        Value = entidade.Id
-            //    }
-            //};
-            //string json = new RestConnection().GetResponseRestPost(url, endpoint, parameterList, urlSegmentList);
             User objList = JsonConvert.DeserializeObject<User>(json);
 
             var objReturn = new List<Entity>();
             objReturn.Add(objList);
-            //if (objList != null)
-            //    foreach (var obj in objList)
-            //    {
-            //        objReturn.Add(obj);
-            //    }
 
             return objReturn;
-            //throw new NotImplementedException();
         }
 
-        public void Excluir(Entity entidade)
+        public List<Entity> Consultar(Entity entidade)
+        {
+            string json = null;
+            var User = (User)entidade;
+            string endpoint = "login";
+            var Body = new User { Email = User.Email, Password = User.Password };
+            json = new RestConnection().PostRequest(endpoint, Body);
+
+            User objList = JsonConvert.DeserializeObject<User>(json);
+
+            var objReturn = new List<Entity>();
+            objReturn.Add(objList);
+
+            return objReturn;
+        }
+
+        public List<Entity> Excluir(Entity entidade)
+        {
+            string json = null;
+            var User = (User)entidade;
+            string endpoint = "user/" + User.Id;
+
+            //json = new RestConnection().GetRequestById(endpoint, entidade);
+
+            User objList = JsonConvert.DeserializeObject<User>(json);
+
+            var objReturn = new List<Entity>();
+            objReturn.Add(objList);
+
+            return objReturn;
+
+        }
+
+        public List<Entity> Salvar(Entity entidade)
         {
             throw new NotImplementedException();
         }
 
-        public void Salvar(Entity entidade)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

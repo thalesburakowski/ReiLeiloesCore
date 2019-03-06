@@ -9,6 +9,8 @@ namespace ReiLeilaoCore.Domain
     {
         public string Email { get; set; }
         public string Password { get; set; }
+        public string ConfirmationPassword { get; set; }
+        public string NewPassword { get; set; }
         public bool FlagAdmin { get; set; }
         public bool Active { get; set; }
         public string ProfileId { get; set; }

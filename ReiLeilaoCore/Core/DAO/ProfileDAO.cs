@@ -10,7 +10,7 @@ namespace ReiLeilaoCore.Core.DAO
 {
     public class ProfileDAO : IDAO
     {
-        public void Alterar(Entity entidade)
+        public List<Entity> Alterar(Entity entidade)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace ReiLeilaoCore.Core.DAO
                 json = new RestConnection().GetRequestById(endpoint, entidade);
             }
 
-            User objList = JsonConvert.DeserializeObject<User>(json);
+            Profile objList = JsonConvert.DeserializeObject<Profile>(json);
 
             var objReturn = new List<Entity>();
             objReturn.Add(objList);
@@ -40,14 +40,15 @@ namespace ReiLeilaoCore.Core.DAO
             throw new NotImplementedException();
         }
 
-        public void Excluir(Entity entidade)
+        public List<Entity> Excluir(Entity entidade)
         {
             throw new NotImplementedException();
         }
 
-        public void Salvar(Entity entidade)
+        public List<Entity> Salvar(Entity entidade)
         {
             throw new NotImplementedException();
         }
+
     }
 }

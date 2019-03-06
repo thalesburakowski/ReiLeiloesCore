@@ -37,7 +37,7 @@ namespace ReiLeilaoCore.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Put([FromBody] User User)
         {
             //User User = new User();

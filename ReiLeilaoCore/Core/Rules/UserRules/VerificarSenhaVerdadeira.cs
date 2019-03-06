@@ -7,7 +7,7 @@ using ReiLeilaoCore.Domain;
 
 namespace ReiLeilaoCore.Core.Rules.UserRules
 {
-    public class VerificarSenhaIgual : IStrategy
+    public class VerificarSenhaVerdadeira : IStrategy
     {
         public string Processar(Entity entidade)
         {
@@ -20,9 +20,9 @@ namespace ReiLeilaoCore.Core.Rules.UserRules
                     if (!String.IsNullOrEmpty(User.Password))
                     {
                         var UserRegistred = (User)UserDao.Consultar(User)[0];
-                        if (UserRegistred.Password != User.Password)
+                        if (String.IsNullOrEmpty(UserRegistred.Id))
                         {
-                            return "Email ou senha incorretas!";
+                            return "Senha antiga incorreta!";
                         }
                     }
                 }

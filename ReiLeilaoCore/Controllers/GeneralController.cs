@@ -24,7 +24,6 @@ namespace ReiLeilaoCore.Controllers
             _commands.Add("ALTERAR", new AlterarCommand());
         }
 
-
         public Result DoProcessRequest(Entity entidade, string strOperacao)
         {
             ICommand command = _commands[strOperacao];
