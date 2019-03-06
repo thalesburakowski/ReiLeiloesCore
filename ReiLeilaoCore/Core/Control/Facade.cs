@@ -8,6 +8,7 @@ using ReiLeilaoCore.Domain;
 using ReiLeilaoCore.Core.Rules;
 using System.Text;
 using System.Data.SqlClient;
+using ReiLeilaoCore.Core.Rules.UserRules;
 
 namespace ReiLeilaoCore.Core.Control
 {
@@ -24,14 +25,40 @@ namespace ReiLeilaoCore.Core.Control
         {
             _daos = new Dictionary<Type, IDAO>();
             _rns = new Dictionary<Type, Dictionary<string, List<IStrategy>>>();
+
+            // USER FACADE
             var UserDAO = new UserDAO();
-
+            var ProfileDAO = new ProfileDAO();
             _daos.Add(new User().GetType(), UserDAO);
+            _daos.Add(new Profile().GetType(), ProfileDAO);
 
+
+            // regras de negócio genéricas
             var VerificarId = new VerificarId();
 
+            // regras de negócio User
+            var CriptografarSenha = new CriptografarSenha();
+            var VerificarSenhaIgual = new VerificarSenhaIgual();
+            var VerificarEmail = new VerificarEmail();
+
+            // regras de negócio Profile
+
+
+            List<IStrategy> rnsSalvarUser = new List<IStrategy>();
+            rnsSalvarUser.Add(CriptografarSenha);
+
             List<IStrategy> rnsConsultarUser = new List<IStrategy>();
-            rnsConsultarUser.Add(VerificarId);
+            rnsConsultarUser.Add(VerificarEmail);
+            rnsConsultarUser.Add(CriptografarSenha);
+            rnsConsultarUser.Add(VerificarSenhaIgual);
+
+            List<IStrategy> rnsAlterarUser = new List<IStrategy>();
+            rnsAlterarUser.Add(VerificarId);
+
+            List<IStrategy> rnsExcluirUser = new List<IStrategy>();
+            rnsExcluirUser.Add(VerificarId);
+
+
 
             var rnsUser = new Dictionary<string, List<IStrategy>>();
 

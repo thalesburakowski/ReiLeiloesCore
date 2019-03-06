@@ -8,6 +8,7 @@ using ReiLeilaoCore.Domain;
 
 namespace ReiLeilaoCore.Controllers
 {
+    [Produces("application/json")]
     [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
@@ -19,31 +20,41 @@ namespace ReiLeilaoCore.Controllers
         //    return new string[] { "value1", "value2" };
         //}
 
-        [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        [HttpPost]
+        [Route("login")]
+        public IActionResult PostLogin([FromBody] User User)
         {
-            User User = new User();
-            User.Id = id;
             var objectResult = new GeneralController().DoProcessRequest(User, "CONSULTAR");
             return new ObjectResult(objectResult);
         }
 
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("create")]
+        public IActionResult PostCreate([FromBody] User User)
         {
+            var objectResult = new GeneralController().DoProcessRequest(User, "SALVAR");
+            return new ObjectResult(objectResult);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put([FromBody] User User)
         {
+            //User User = new User();
+            //User.Id = id;
+            //User.Password = password;
+            var objectResult = new GeneralController().DoProcessRequest(User, "ALTERAR");
+            return new ObjectResult(objectResult);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(string id)
         {
+            User User = new User();
+            User.Id = id;
+            var objectResult = new GeneralController().DoProcessRequest(User, "EXCLUIR");
+            return new ObjectResult(objectResult);
         }
     }
 }
