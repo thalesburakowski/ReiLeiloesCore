@@ -51,7 +51,7 @@ namespace ReiLeilaoCore.Core.DAO
             var User = (User)entidade;
             string endpoint = "user/" + User.Id;
 
-            //json = new RestConnection().GetRequestById(endpoint, entidade);
+            json = new RestConnection().DeleteRequest(endpoint, entidade);
 
             User objList = JsonConvert.DeserializeObject<User>(json);
 
@@ -64,6 +64,46 @@ namespace ReiLeilaoCore.Core.DAO
 
         public List<Entity> Salvar(Entity entidade)
         {
+            string json = null;
+            var Body = (User)entidade;
+
+            json = new RestConnection().PostRequest("verifyEmail", Body);
+
+            var definition = new { active = false };
+
+            var resObj = JsonConvert.DeserializeAnonymousType(json, definition);
+
+            User objList;
+
+            //var objReturn;
+
+            var objReturn = new List<Entity>();
+
+            if (objReturn != null)
+            {
+                if (resObj.active)
+                {
+                    throw new Exception("Esse email já está sendo usado");
+                }
+                else if (resObj.active == false)
+                {
+                    json = new RestConnection().PutRequest("reactivateUser", Body);
+                    objList = JsonConvert.DeserializeObject<User>(json);
+
+                    objReturn.Add(objList);
+
+                    return objReturn;
+                }
+            }
+
+            string endpoint = "user";
+            json = new RestConnection().PostRequest(endpoint, Body);
+
+            objList = JsonConvert.DeserializeObject<User>(json);
+
+            objReturn.Add(objList);
+
+            return objReturn;
             throw new NotImplementedException();
         }
 

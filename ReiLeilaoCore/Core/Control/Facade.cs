@@ -93,7 +93,7 @@ namespace ReiLeilaoCore.Core.Control
                 {
                     resultado.Entities = dao.Alterar(entidade);
                 }
-                catch (SqlException e)
+                catch (Exception e)
                 {
                     Console.Write(e.StackTrace);
                     resultado.Msg = "Não foi possí­vel realizar a consulta!";
@@ -121,7 +121,7 @@ namespace ReiLeilaoCore.Core.Control
                 {
                     resultado.Entities = dao.Consultar(entidade);
                 }
-                catch (SqlException e)
+                catch (Exception e)
                 {
                     Console.Write(e.StackTrace);
                     resultado.Msg = "Não foi possí­vel realizar a consulta!";
@@ -147,10 +147,10 @@ namespace ReiLeilaoCore.Core.Control
                 IDAO dao = _daos[nmClasse];
                 try
                 {
-                    dao.Excluir(entidade);
-                    resultado.Entities.Add(entidade);
+                    
+                    resultado.Entities = dao.Excluir(entidade);
                 }
-                catch (SqlException e)
+                catch (Exception e)
                 {
                     Console.Write(e.StackTrace);
                     resultado.Msg = "Não foi possí­vel realizar a exclusão!";
@@ -166,7 +166,30 @@ namespace ReiLeilaoCore.Core.Control
 
         public Result Salvar(Entity entidade)
         {
-            throw new NotImplementedException();
+            resultado = new Result();
+            Type nmClasse = entidade.GetType();
+
+            string msg = executarRegras(entidade, "SALVAR");
+
+            if (msg == null)
+            {
+                IDAO dao = _daos[nmClasse];
+                try
+                {
+
+                    resultado.Entities = dao.Salvar(entidade);
+                }
+                catch (Exception e)
+                {
+                    Console.Write(e.StackTrace);
+                    resultado.Msg = "Não foi possí­vel realizar a inserção!";
+                }
+            }
+            else
+            {
+                resultado.Msg = msg;
+            }
+            return resultado;
         }
 
 

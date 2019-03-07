@@ -48,13 +48,23 @@ namespace ReiLeilaoCore.Core.Util
             return client.Execute(request).Content;
         }
 
-        public string PutRequest(string endpoint, object Body)
+        public string PutRequest(string endpoint, object body)
         {
             var client = new RestClient(url);
             var request = new RestRequest(endpoint, Method.PUT);
             request.RequestFormat = DataFormat.Json;
-            request.AddJsonBody(Body);
+            request.AddJsonBody(body);
             return client.Execute(request).Content;
         }
+
+        public string DeleteRequest(string endpoint, object body)
+        {
+            var client = new RestClient(url);
+            var request = new RestRequest(endpoint, Method.DELETE);
+            request.RequestFormat = DataFormat.Json;
+            request.AddJsonBody(body);
+            return client.Execute(request).Content;
+        }
+
     }
 }
