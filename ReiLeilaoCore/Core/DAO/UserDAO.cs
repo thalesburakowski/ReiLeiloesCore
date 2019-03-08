@@ -69,7 +69,7 @@ namespace ReiLeilaoCore.Core.DAO
 
             json = new RestConnection().PostRequest("verifyEmail", Body);
 
-            var definition = new { active = false };
+            var definition = new { response = "" };
 
             var resObj = JsonConvert.DeserializeAnonymousType(json, definition);
 
@@ -79,13 +79,13 @@ namespace ReiLeilaoCore.Core.DAO
 
             var objReturn = new List<Entity>();
 
-            if (objReturn != null)
+            if (resObj.response != "inexistente")
             {
-                if (resObj.active)
+                if (resObj.response == "ativo")
                 {
                     throw new Exception("Esse email já está sendo usado");
                 }
-                else if (resObj.active == false)
+                else if (resObj.response == "inativo")
                 {
                     json = new RestConnection().PutRequest("reactivateUser", Body);
                     objList = JsonConvert.DeserializeObject<User>(json);
