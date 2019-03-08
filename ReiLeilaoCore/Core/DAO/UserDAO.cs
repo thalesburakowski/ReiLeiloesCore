@@ -65,9 +65,9 @@ namespace ReiLeilaoCore.Core.DAO
         public List<Entity> Salvar(Entity entidade)
         {
             string json = null;
-            var Body = (User)entidade;
-
-            json = new RestConnection().PostRequest("verifyEmail", Body);
+            var User = (User)entidade;
+            var body = User;
+            json = new RestConnection().PostRequest("verifyEmail", body);
 
             var definition = new { response = "" };
 
@@ -87,7 +87,7 @@ namespace ReiLeilaoCore.Core.DAO
                 }
                 else if (resObj.response == "inativo")
                 {
-                    json = new RestConnection().PutRequest("reactivateUser", Body);
+                    json = new RestConnection().PutRequest("reactivateUser", body);
                     objList = JsonConvert.DeserializeObject<User>(json);
 
                     objReturn.Add(objList);
@@ -96,8 +96,19 @@ namespace ReiLeilaoCore.Core.DAO
                 }
             }
 
+            if (User.FlagAdmin)
+            {
+                json = new RestConnection().PostRequest("admin", body);
+
+                objList = JsonConvert.DeserializeObject<User>(json);
+
+                objReturn.Add(objList);
+
+                return objReturn;
+            }
+
             string endpoint = "user";
-            json = new RestConnection().PostRequest(endpoint, Body);
+            json = new RestConnection().PostRequest(endpoint, body);
 
             objList = JsonConvert.DeserializeObject<User>(json);
 

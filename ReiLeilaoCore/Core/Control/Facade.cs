@@ -176,7 +176,6 @@ namespace ReiLeilaoCore.Core.Control
                 IDAO dao = _daos[nmClasse];
                 try
                 {
-
                     resultado.Entities = dao.Salvar(entidade);
                 }
                 catch (Exception e)
