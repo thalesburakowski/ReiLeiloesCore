@@ -8,10 +8,11 @@ namespace ReiLeilaoCore.Domain
     public class Profile : Entity
     {
         public string Name { get; set; }
-        public string lastName { get; set; }
+        public string LastName { get; set; }
+        public string UserId { get; set; }
         public string Cpf { get; set; }
         public string Rg { get; set; }
-        public DateTime birthDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public string NickName { get; set; }
     }
 }

@@ -100,7 +100,7 @@ namespace ReiLeilaoCore.Core.DAO
             {
                 json = new RestConnection().PostRequest("admin", body);
 
-                objList = JsonConvert.DeserializeObject<User>(json);
+                objList = JsonConvert.DeserializeObject<User>( json);
 
                 objReturn.Add(objList);
 

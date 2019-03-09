@@ -15,8 +15,6 @@ namespace ReiLeilaoCore.Controllers
 
         public GeneralController()
         {
-            /* Utilizando o command para chamar a fachada e indexando cada command 
-    	 * pela operaï¿½ï¿½o garantimos que esta servelt atenderï¿½ qualquer operaï¿½ï¿½o */
             _commands = new Dictionary<string, ICommand>();
             _commands.Add("SALVAR", new SalvarCommand());
             _commands.Add("EXCLUIR", new ExcluirCommand());

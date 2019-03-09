@@ -9,6 +9,8 @@ using ReiLeilaoCore.Core.Rules;
 using System.Text;
 using System.Data.SqlClient;
 using ReiLeilaoCore.Core.Rules.UserRules;
+using ReiLeilaoCore.Core.Rules.ProfileRules;
+
 
 namespace ReiLeilaoCore.Core.Control
 {
@@ -26,15 +28,12 @@ namespace ReiLeilaoCore.Core.Control
             _daos = new Dictionary<Type, IDAO>();
             _rns = new Dictionary<Type, Dictionary<string, List<IStrategy>>>();
 
-            // USER FACADE
-            var UserDAO = new UserDAO();
-            var ProfileDAO = new ProfileDAO();
-            _daos.Add(new User().GetType(), UserDAO);
-            _daos.Add(new Profile().GetType(), ProfileDAO);
-
-
             // regras de negócio genéricas
             var VerificarId = new VerificarId();
+
+            // USER FACADE
+            var UserDAO = new UserDAO();
+            _daos.Add(new User().GetType(), UserDAO);
 
             // regras de negócio User
             var VerificarEmail = new VerificarEmail();
@@ -45,27 +44,25 @@ namespace ReiLeilaoCore.Core.Control
             var CriptografarNovaSenha = new CriptografarNovaSenha();
 
 
-
-            // regras de negócio Profile
-
-
             List<IStrategy> rnsSalvarUser = new List<IStrategy>();
             rnsSalvarUser.Add(CriptografarSenha);
 
             List<IStrategy> rnsConsultarUser = new List<IStrategy>();
+
             rnsConsultarUser.Add(VerificarEmail);
             rnsConsultarUser.Add(VerificarSenha);
             rnsConsultarUser.Add(CriptografarSenha);
 
             List<IStrategy> rnsAlterarUser = new List<IStrategy>();
+
             rnsAlterarUser.Add(VerificarId);
             rnsAlterarUser.Add(VerificarSenha);
             rnsAlterarUser.Add(CriptografarSenha);
             rnsAlterarUser.Add(VerificarSenhaVerdadeira);
             rnsAlterarUser.Add(CriptografarNovaSenha);
 
-
             List<IStrategy> rnsExcluirUser = new List<IStrategy>();
+
             rnsExcluirUser.Add(VerificarId);
 
             var rnsUser = new Dictionary<string, List<IStrategy>>();
@@ -75,8 +72,56 @@ namespace ReiLeilaoCore.Core.Control
             rnsUser.Add("ALTERAR", rnsAlterarUser);
             rnsUser.Add("EXCLUIR", rnsExcluirUser);
 
-
             _rns.Add(new User().GetType(), rnsUser);
+
+            // PROFILE FACADE
+            var ProfileDAO = new ProfileDAO();
+
+            _daos.Add(new Profile().GetType(), ProfileDAO);
+
+            // regras de negócio Profile
+            var VerificarUserId = new VerificarUserId();
+
+            List<IStrategy> rnsSalvarProfile = new List<IStrategy>();
+            rnsSalvarProfile.Add(VerificarUserId);
+
+            List<IStrategy> rnsConsultarProfile = new List<IStrategy>();
+            rnsConsultarProfile.Add(VerificarId);
+
+            var rnsProfile = new Dictionary<string, List<IStrategy>>();
+
+            rnsProfile.Add("CONSULTAR", rnsConsultarProfile);
+
+            rnsProfile.Add("SALVAR", rnsSalvarProfile);
+
+            _rns.Add(new Profile().GetType(), rnsProfile);
+
+
+            // PROFILE FACADE
+            //var ProfileDAO = new ProfileDAO();
+
+            //_daos.Add(new Profile().GetType(), ProfileDAO);
+
+            //// regras de negócio Profile
+
+            //List<IStrategy> rnsSalvarProfile = new List<IStrategy>();
+
+            //List<IStrategy> rnsConsultarProfile = new List<IStrategy>();
+
+            //List<IStrategy> rnsAlterarProfile = new List<IStrategy>();
+
+            //List<IStrategy> rnsExcluirProfile = new List<IStrategy>();
+
+            //var rnsProfile = new Dictionary<string, List<IStrategy>>();
+
+            //rnsProfile.Add("CONSULTAR", rnsConsultarProfile);
+            //rnsProfile.Add("SALVAR", rnsSalvarProfile);
+            //rnsProfile.Add("ALTERAR", rnsAlterarProfile);
+            //rnsProfile.Add("EXCLUIR", rnsExcluirProfile);
+
+            //_rns.Add(new Profile().GetType(), rnsProfile);
+
+
         }
 
         public Result Alterar(Entity entidade)
