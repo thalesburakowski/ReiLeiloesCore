@@ -116,6 +116,7 @@ namespace ReiLeilaoCore.Core.Control
             // regras de negócio Address
             var VerificarCamposObrigatoriosEnd = new VerificarCamposObrigatoriosEnd();
             var VerificarNomeUnico = new VerificarNomeUnico();
+            var VerificarCampoObgAltEnd = new VerificarCampoObrigatorioAlteracaoEnd();
 
             List<IStrategy> rnsSalvarAddress = new List<IStrategy>();
             rnsSalvarAddress.Add(VerificarCamposObrigatoriosEnd);
@@ -125,6 +126,7 @@ namespace ReiLeilaoCore.Core.Control
 
             List<IStrategy> rnsAlterarAddress = new List<IStrategy>();
             rnsAlterarAddress.Add(VerificarNomeUnico);
+            rnsAlterarAddress.Add(VerificarCampoObgAltEnd);
 
             List<IStrategy> rnsExcluirAddress = new List<IStrategy>();
 

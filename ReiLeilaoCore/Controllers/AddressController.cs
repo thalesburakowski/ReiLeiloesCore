@@ -24,9 +24,12 @@ namespace ReiLeilaoCore.Controllers
 
         // GET 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(string id)
         {
-            return "value";
+            Address Address = new Address();
+            Address.ProfileId = id;
+            var objectResult = new GeneralController().DoProcessRequest(Address, "CONSULTAR");
+            return new ObjectResult(objectResult);
         }
 
         // POST 
