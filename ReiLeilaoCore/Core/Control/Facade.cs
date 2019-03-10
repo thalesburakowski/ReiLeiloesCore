@@ -44,22 +44,25 @@ namespace ReiLeilaoCore.Core.Control
             var VerificarExistenciaEmail = new VerificarExistenciaEmail();
             var VerificarCamposNulosCadastro = new VerificarCamposNulosCadastro();
             var VerificarCamposNulosAlterar = new VerificarCamposNulosAlterar();
+            var VerificarInexistenciaEmail = new VerificarInexistenciaEmail();
+            var ConfirmarNovaSenha = new ConfirmarNovaSenha();
 
             List<IStrategy> rnsSalvarUser = new List<IStrategy>();
             rnsSalvarUser.Add(VerificarCamposNulosCadastro);
             rnsSalvarUser.Add(VerificarConfirmacaoSenha);
             rnsSalvarUser.Add(CriptografarSenha);
             rnsSalvarUser.Add(VerificarExistenciaEmail);
-
-
+            
             List<IStrategy> rnsConsultarUser = new List<IStrategy>();
             rnsConsultarUser.Add(VerificarCamposNulosCadastro);
             rnsConsultarUser.Add(CriptografarSenha);
+            rnsConsultarUser.Add(VerificarInexistenciaEmail);
 
             List<IStrategy> rnsAlterarUser = new List<IStrategy>();
             rnsAlterarUser.Add(VerificarCamposNulosCadastro);
             rnsAlterarUser.Add(VerificarCamposNulosAlterar);
             rnsAlterarUser.Add(VerificarId);
+            rnsAlterarUser.Add(ConfirmarNovaSenha);
             rnsAlterarUser.Add(CriptografarSenha);
             rnsAlterarUser.Add(ConfirmarSenhaAntiga);
             rnsAlterarUser.Add(CriptografarNovaSenha);
