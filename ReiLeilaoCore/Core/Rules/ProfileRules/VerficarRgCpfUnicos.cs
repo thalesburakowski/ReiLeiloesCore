@@ -15,11 +15,11 @@ namespace ReiLeilaoCore.Core.Rules.ProfileRules
             {
                 var dao = new ProfileDAO();
                 var Profile = (Profile)entidade;
-                var SearchProfile = (Profile)entidade;
+                var SearchProfile = new Profile();
 
                 //Passando um  perfil soh com o rg 
                 SearchProfile.Rg = Profile.Rg;
-                List<Entity> resultProfile = (List<Entity>) dao.Consultar(SearchProfile);
+                List<Entity> resultProfile = (List<Entity>) dao.VerificarRg(SearchProfile);
                 if (resultProfile.Count > 0)
                 {
                     return "Esse RG já está cadastrado!";
@@ -28,7 +28,7 @@ namespace ReiLeilaoCore.Core.Rules.ProfileRules
                 //Passando um  perfil soh com o cpf
                 SearchProfile.Rg = "";
                 SearchProfile.Cpf = Profile.Cpf;
-                resultProfile = (List<Entity>)dao.Consultar(SearchProfile);
+                resultProfile = (List<Entity>)dao.VerificarCpf(SearchProfile);
                 if (resultProfile.Count > 0)
                 {
                     return "Esse CPF já está cadastrado!";

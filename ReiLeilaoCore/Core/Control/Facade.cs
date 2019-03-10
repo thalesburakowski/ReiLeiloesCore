@@ -10,6 +10,7 @@ using System.Text;
 using System.Data.SqlClient;
 using ReiLeilaoCore.Core.Rules.UserRules;
 using ReiLeilaoCore.Core.Rules.ProfileRules;
+using ReiLeilaoCore.Core.Rules.AddressRules;
 
 
 namespace ReiLeilaoCore.Core.Control
@@ -65,7 +66,7 @@ namespace ReiLeilaoCore.Core.Control
             rnsAlterarUser.Add(CriptografarSenha);
             rnsAlterarUser.Add(ConfirmarSenhaAntiga);
             rnsAlterarUser.Add(CriptografarNovaSenha);
-            
+
 
             List<IStrategy> rnsExcluirUser = new List<IStrategy>();
             rnsExcluirUser.Add(VerificarId);
@@ -82,7 +83,7 @@ namespace ReiLeilaoCore.Core.Control
 
 
             // PROFILE FACADE
-            var ProfileDAO = new ProfileDAO();
+            var ProfileDAO = new AddressDAO();
             _daos.Add(new Profile().GetType(), ProfileDAO);
 
             // regras de negócio Profile
@@ -111,6 +112,33 @@ namespace ReiLeilaoCore.Core.Control
             _rns.Add(new Profile().GetType(), rnsProfile);
 
 
+            //Address FACADE
+            var AddressDAO  = new AddressDAO();
+            _daos.Add(new Address().GetType(), AddressDAO);
+
+            // regras de negócio Address
+            var VerificarCamposObrigatoriosEnd = new VerificarCamposObrigatoriosEnd();
+            var VerificarNomeUnico = new VerificarNomeUnico();
+
+            List<IStrategy> rnsSalvarAddress = new List<IStrategy>();
+            rnsSalvarAddress.Add(VerificarCamposObrigatoriosEnd);
+            rnsSalvarAddress.Add(VerificarNomeUnico);
+
+            List<IStrategy> rnsConsultarAddress = new List<IStrategy>();
+
+            List<IStrategy> rnsAlterarAddress = new List<IStrategy>();
+            rnsAlterarAddress.Add(VerificarNomeUnico);
+
+            List<IStrategy> rnsExcluirAddress = new List<IStrategy>();
+
+            var rnsAddress = new Dictionary<string, List<IStrategy>>();
+
+            rnsAddress.Add("CONSULTAR", rnsConsultarAddress);
+            rnsAddress.Add("SALVAR", rnsSalvarAddress);
+            rnsAddress.Add("ALTERAR", rnsAlterarAddress);
+            rnsAddress.Add("EXCLUIR", rnsExcluirAddress);
+
+            _rns.Add(new Address().GetType(), rnsAddress);
 
 
 
@@ -212,7 +240,7 @@ namespace ReiLeilaoCore.Core.Control
                 IDAO dao = _daos[nmClasse];
                 try
                 {
-                    
+
                     resultado.Entities = dao.Excluir(entidade);
                 }
                 catch (Exception e)
