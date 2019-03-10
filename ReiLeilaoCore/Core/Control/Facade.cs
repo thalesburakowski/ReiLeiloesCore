@@ -42,12 +42,13 @@ namespace ReiLeilaoCore.Core.Control
             var VerificarConfirmacaoSenha = new VerificarConfirmacaoSenha();
             var VerificarExistenciaEmail = new VerificarExistenciaEmail();
             var VerificarCamposNulosCadastro = new VerificarCamposNulosCadastro();
+            var VerificarCamposNulosAlterar = new VerificarCamposNulosAlterar();
 
             List<IStrategy> rnsSalvarUser = new List<IStrategy>();
             rnsSalvarUser.Add(VerificarCamposNulosCadastro);
-            rnsSalvarUser.Add(VerificarExistenciaEmail);
             rnsSalvarUser.Add(VerificarConfirmacaoSenha);
             rnsSalvarUser.Add(CriptografarSenha);
+            rnsSalvarUser.Add(VerificarExistenciaEmail);
             
 
             List<IStrategy> rnsConsultarUser = new List<IStrategy>();
@@ -56,6 +57,7 @@ namespace ReiLeilaoCore.Core.Control
 
             List<IStrategy> rnsAlterarUser = new List<IStrategy>();
             rnsAlterarUser.Add(VerificarCamposNulosCadastro);
+            rnsAlterarUser.Add(VerificarCamposNulosAlterar);
             rnsAlterarUser.Add(VerificarId);
             rnsAlterarUser.Add(CriptografarSenha);
             rnsAlterarUser.Add(ConfirmarSenhaAntiga);
@@ -169,7 +171,7 @@ namespace ReiLeilaoCore.Core.Control
                 catch (Exception e)
                 {
                     Console.Write(e.StackTrace);
-                    resultado.Msg = "Não foi possí­vel realizar a consulta!";
+                    resultado.Msg = "Não foi possí­vel realizar o login!";
                 }
             }
             else

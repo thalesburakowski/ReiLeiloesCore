@@ -7,7 +7,7 @@ using ReiLeilaoCore.Domain;
 
 namespace ReiLeilaoCore.Core.Rules.UserRules
 {
-    public class VerificarSenhaVerdadeira : IStrategy
+    public class ConfirmarSenhaAntiga : IStrategy
     {
         public string Processar(Entity entidade)
         {
@@ -17,19 +17,13 @@ namespace ReiLeilaoCore.Core.Rules.UserRules
                 if (entidade is User)
                 {
                     var User = (User)entidade;
-                    if (!String.IsNullOrEmpty(User.Password))
-                    {
-                        var UserRegistred = (User)UserDao.Consultar(User)[0];
-                        if (String.IsNullOrEmpty(UserRegistred.Id))
-                        {
-                            return "Senha antiga incorreta!";
-                        }
-                    }
+
+                    var UserRegistred = (User)UserDao.Consultar(User)[0];
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                return "Senha antiga incorreta!";
             }
 
             return null;
