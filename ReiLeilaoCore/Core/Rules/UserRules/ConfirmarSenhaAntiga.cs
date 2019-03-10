@@ -7,7 +7,7 @@ using ReiLeilaoCore.Domain;
 
 namespace ReiLeilaoCore.Core.Rules.UserRules
 {
-    public class VerificarSenhaVerdadeira : IStrategy
+    public class ConfirmarSenhaAntiga : IStrategy
     {
         public string Processar(Entity entidade)
         {

@@ -74,16 +74,26 @@ namespace ReiLeilaoCore.Core.Control
 
             _rns.Add(new User().GetType(), rnsUser);
 
+
+
             // PROFILE FACADE
             var ProfileDAO = new ProfileDAO();
-
             _daos.Add(new Profile().GetType(), ProfileDAO);
 
             // regras de negócio Profile
             var VerificarUserId = new VerificarUserId();
 
+            var VerificarCamposObrigatorios = new VerificarCamposObrigatorios();
+            var VerificarCpfValido = new VerificarCpfValido();
+            var VerficarRgCpfUnicos = new VerficarRgCpfUnicos();
+            var VerificarNicknameUnico = new VerificarNicknameUnico();
+
             List<IStrategy> rnsSalvarProfile = new List<IStrategy>();
-            rnsSalvarProfile.Add(VerificarUserId);
+            //rnsSalvarProfile.Add(VerificarUserId);
+            rnsSalvarProfile.Add(VerificarCamposObrigatorios);
+            rnsSalvarProfile.Add(VerificarCpfValido);
+            rnsSalvarProfile.Add(VerficarRgCpfUnicos);
+            rnsSalvarProfile.Add(VerificarNicknameUnico);
 
             List<IStrategy> rnsConsultarProfile = new List<IStrategy>();
             rnsConsultarProfile.Add(VerificarId);
@@ -91,10 +101,15 @@ namespace ReiLeilaoCore.Core.Control
             var rnsProfile = new Dictionary<string, List<IStrategy>>();
 
             rnsProfile.Add("CONSULTAR", rnsConsultarProfile);
-
             rnsProfile.Add("SALVAR", rnsSalvarProfile);
 
             _rns.Add(new Profile().GetType(), rnsProfile);
+
+
+
+
+
+
 
 
             // PROFILE FACADE
