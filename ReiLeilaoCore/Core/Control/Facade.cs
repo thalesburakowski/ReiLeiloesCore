@@ -36,41 +36,33 @@ namespace ReiLeilaoCore.Core.Control
             _daos.Add(new User().GetType(), UserDAO);
 
             // regras de negócio User
-            var VerificarEmail = new VerificarEmail();
-            var VerificarSenha = new VerificarSenha();
             var CriptografarSenha = new CriptografarSenha();
-            var VerificarSenhaIgual = new VerificarSenhaIgual();
-            var VerificarSenhaVerdadeira = new VerificarSenhaVerdadeira();
+            var ConfirmarSenhaAntiga = new ConfirmarSenhaAntiga();
             var CriptografarNovaSenha = new CriptografarNovaSenha();
             var VerificarConfirmacaoSenha = new VerificarConfirmacaoSenha();
             var VerificarExistenciaEmail = new VerificarExistenciaEmail();
+            var VerificarCamposNulosCadastro = new VerificarCamposNulosCadastro();
 
             List<IStrategy> rnsSalvarUser = new List<IStrategy>();
-            rnsSalvarUser.Add(VerificarEmail);
-            rnsSalvarUser.Add(VerificarSenha);
+            rnsSalvarUser.Add(VerificarCamposNulosCadastro);
             rnsSalvarUser.Add(VerificarExistenciaEmail);
             rnsSalvarUser.Add(VerificarConfirmacaoSenha);
             rnsSalvarUser.Add(CriptografarSenha);
             
 
             List<IStrategy> rnsConsultarUser = new List<IStrategy>();
-
-            rnsConsultarUser.Add(VerificarEmail);
-            rnsConsultarUser.Add(VerificarSenha);
+            rnsConsultarUser.Add(VerificarCamposNulosCadastro);
             rnsConsultarUser.Add(CriptografarSenha);
 
             List<IStrategy> rnsAlterarUser = new List<IStrategy>();
-
+            rnsAlterarUser.Add(VerificarCamposNulosCadastro);
             rnsAlterarUser.Add(VerificarId);
-            rnsAlterarUser.Add(VerificarSenha);
             rnsAlterarUser.Add(CriptografarSenha);
-            rnsAlterarUser.Add(VerificarSenhaVerdadeira);
+            rnsAlterarUser.Add(ConfirmarSenhaAntiga);
             rnsAlterarUser.Add(CriptografarNovaSenha);
-           
             
 
             List<IStrategy> rnsExcluirUser = new List<IStrategy>();
-
             rnsExcluirUser.Add(VerificarId);
 
             var rnsUser = new Dictionary<string, List<IStrategy>>();

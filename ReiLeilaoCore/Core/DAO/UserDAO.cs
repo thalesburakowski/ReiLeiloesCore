@@ -71,8 +71,7 @@ namespace ReiLeilaoCore.Core.DAO
             var resObj = VerificarExistencia(User);
 
             User objList;
-
-          
+    
             var objReturn = new List<Entity>();
 
             if (resObj == "inativo")
@@ -105,7 +104,6 @@ namespace ReiLeilaoCore.Core.DAO
             objReturn.Add(objList);
 
             return objReturn;
-            throw new NotImplementedException();
         }
 
         public String VerificarExistencia(Entity entidade)

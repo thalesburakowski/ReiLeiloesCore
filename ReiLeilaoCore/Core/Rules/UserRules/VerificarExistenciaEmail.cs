@@ -21,7 +21,6 @@ namespace ReiLeilaoCore.Core.Rules.UserRules
                 return "Esse e-mail já está cadastrado!";
             }
             return null;
-            throw new NotImplementedException();
         }
     }
 

@@ -6,19 +6,23 @@ using ReiLeilaoCore.Domain;
 
 namespace ReiLeilaoCore.Core.Rules.UserRules
 {
-    public class VerificarSenha : IStrategy
+    public class VerificarConfirmacaoNovaSenha : IStrategy
     {
         public string Processar(Entity entidade)
         {
             if (entidade is User)
             {
                 var User = (User)entidade;
-                if (String.IsNullOrEmpty(User.Password))
+                if (string.Compare(User.NewPassword, User.ConfirmationPassword) != 0)
                 {
-                    return "A senha precisa ser preenchida";
+                    return "As senhas precisam ser iguais!";
                 }
+                return null;
             }
-            return null;
+            else
+            {
+                return "Essa entidade não é do tipo usuário!";
+            }
         }
     }
 }
