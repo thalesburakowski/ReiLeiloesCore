@@ -17,15 +17,17 @@ namespace ReiLeilaoCore.Core.DAO
 
         public List<Entity> Consultar(Entity entidade)
         {
+            Profile Profile = (Profile)entidade;
+            string endpoint = "profile/";
             string json = null;
             if (String.IsNullOrEmpty(entidade.Id))
             {
-                string endpoint = "profile/";
+                if(String.IsNullOrEmpty(Profile.Cpf))
                 json = new RestConnection().GetRequest(endpoint);
             }
             else
             {
-                string endpoint = "profile/";
+               
                 endpoint = endpoint + entidade.Id;
                 json = new RestConnection().GetRequestById(endpoint, entidade);
             }
