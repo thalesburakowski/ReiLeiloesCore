@@ -12,7 +12,7 @@ namespace ReiLeilaoCore.Controllers
     [ApiController]
     public class ProfileController : ControllerBase
     {
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(string id)
         {
             Profile Profile = new Profile();

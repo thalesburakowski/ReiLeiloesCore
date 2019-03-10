@@ -18,7 +18,7 @@ namespace ReiLeilaoCore.Core.Rules.ProfileRules
                 var SearchProfile = (Profile)entidade;
 
                 SearchProfile.NickName = Profile.NickName;
-                List<Entity> resultProfile = (List<Entity>)dao.Consultar(SearchProfile);
+                List<Entity> resultProfile = (List<Entity>)dao.VerificarNick(SearchProfile);
                 if (resultProfile.Count > 0)
                 {
                     return "Esse Nickname já está cadastrado!";

@@ -28,7 +28,7 @@ namespace ReiLeilaoCore.Core.Util
             return client.Execute(request).Content;
         }
 
-        public string GetRequestById(string endpoint, Entity entidade)
+        public string GetRequestById(string endpoint)
         {
             var client = new RestClient(url);
             var request = new RestRequest(endpoint, Method.GET);
