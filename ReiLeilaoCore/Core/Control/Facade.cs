@@ -43,10 +43,12 @@ namespace ReiLeilaoCore.Core.Control
             var VerificarSenhaVerdadeira = new VerificarSenhaVerdadeira();
             var CriptografarNovaSenha = new CriptografarNovaSenha();
             var VerificarConfirmacaoSenha = new VerificarConfirmacaoSenha();
+            var VerificarExistenciaEmail = new VerificarExistenciaEmail();
 
             List<IStrategy> rnsSalvarUser = new List<IStrategy>();
             rnsSalvarUser.Add(VerificarEmail);
             rnsSalvarUser.Add(VerificarSenha);
+            rnsSalvarUser.Add(VerificarExistenciaEmail);
             rnsSalvarUser.Add(VerificarConfirmacaoSenha);
             rnsSalvarUser.Add(CriptografarSenha);
             

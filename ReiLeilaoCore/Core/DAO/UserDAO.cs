@@ -67,40 +67,30 @@ namespace ReiLeilaoCore.Core.DAO
             string json = null;
             var User = (User)entidade;
             var body = User;
-            json = new RestConnection().PostRequest("verifyEmail", body);
-
-            var definition = new { response = "" };
-
-            var resObj = JsonConvert.DeserializeAnonymousType(json, definition);
+            
+            var resObj = VerificarExistencia(User);
 
             User objList;
 
-            //var objReturn;
-
+          
             var objReturn = new List<Entity>();
 
-            if (resObj.response != "inexistente")
+            if (resObj == "inativo")
             {
-                if (resObj.response == "ativo")
-                {
-                    throw new Exception("Esse email já está sendo usado");
-                }
-                else if (resObj.response == "inativo")
-                {
-                    json = new RestConnection().PutRequest("reactivateUser", body);
-                    objList = JsonConvert.DeserializeObject<User>(json);
+                json = new RestConnection().PutRequest("reactivateUser", body);
+                objList = JsonConvert.DeserializeObject<User>(json);
 
-                    objReturn.Add(objList);
+                objReturn.Add(objList);
 
-                    return objReturn;
-                }
+                return objReturn;
             }
+
 
             if (User.FlagAdmin)
             {
                 json = new RestConnection().PostRequest("admin", body);
 
-                objList = JsonConvert.DeserializeObject<User>( json);
+                objList = JsonConvert.DeserializeObject<User>(json);
 
                 objReturn.Add(objList);
 
@@ -116,6 +106,20 @@ namespace ReiLeilaoCore.Core.DAO
 
             return objReturn;
             throw new NotImplementedException();
+        }
+
+        public String VerificarExistencia(Entity entidade)
+        {
+            string json = null;
+            var User = (User)entidade;
+            var body = User;
+            json = new RestConnection().PostRequest("verifyEmail", body);
+
+            var definition = new { response = "" };
+
+            var resObj = JsonConvert.DeserializeAnonymousType(json, definition);
+
+            return resObj.response;
         }
 
     }
