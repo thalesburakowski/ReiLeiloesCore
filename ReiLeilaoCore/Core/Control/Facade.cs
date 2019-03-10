@@ -42,10 +42,14 @@ namespace ReiLeilaoCore.Core.Control
             var VerificarSenhaIgual = new VerificarSenhaIgual();
             var VerificarSenhaVerdadeira = new VerificarSenhaVerdadeira();
             var CriptografarNovaSenha = new CriptografarNovaSenha();
-
+            var VerificarConfirmacaoSenha = new VerificarConfirmacaoSenha();
 
             List<IStrategy> rnsSalvarUser = new List<IStrategy>();
+            rnsSalvarUser.Add(VerificarEmail);
+            rnsSalvarUser.Add(VerificarSenha);
+            rnsSalvarUser.Add(VerificarConfirmacaoSenha);
             rnsSalvarUser.Add(CriptografarSenha);
+            
 
             List<IStrategy> rnsConsultarUser = new List<IStrategy>();
 
@@ -60,6 +64,8 @@ namespace ReiLeilaoCore.Core.Control
             rnsAlterarUser.Add(CriptografarSenha);
             rnsAlterarUser.Add(VerificarSenhaVerdadeira);
             rnsAlterarUser.Add(CriptografarNovaSenha);
+           
+            
 
             List<IStrategy> rnsExcluirUser = new List<IStrategy>();
 

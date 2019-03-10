@@ -26,3 +26,17 @@ C:\Users\thales.burakowski\Documents\Fatec\Projeto\ReiLeiloesCore\ReiLeilaoCore\
 C:\Users\thales.burakowski\Documents\Fatec\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.RazorTargetAssemblyInfo.cache
 C:\Users\thales.burakowski\Documents\Fatec\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.dll
 C:\Users\thales.burakowski\Documents\Fatec\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.pdb
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\bin\Debug\netcoreapp2.1\ReiLeilaoCore.deps.json
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\bin\Debug\netcoreapp2.1\ReiLeilaoCore.runtimeconfig.json
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\bin\Debug\netcoreapp2.1\ReiLeilaoCore.runtimeconfig.dev.json
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\bin\Debug\netcoreapp2.1\ReiLeilaoCore.dll
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\bin\Debug\netcoreapp2.1\ReiLeilaoCore.pdb
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.csprojAssemblyReference.cache
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.csproj.CoreCompileInputs.cache
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.RazorAssemblyInfo.cache
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.RazorAssemblyInfo.cs
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.AssemblyInfoInputs.cache
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.AssemblyInfo.cs
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.RazorTargetAssemblyInfo.cache
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.dll
+C:\Users\Mel Novais\Documents\FATEC\Projeto\ReiLeiloesCore\ReiLeilaoCore\obj\Debug\netcoreapp2.1\ReiLeilaoCore.pdb
