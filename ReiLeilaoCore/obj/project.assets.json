@@ -12562,11 +12562,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\thale\\OneDrive\\Documents\\Fatec\\LES\\ReiLeilaoCore\\ReiLeilaoCore\\ReiLeilaoCore.csproj",
+      "projectUniqueName": "C:\\Users\\thale\\OneDrive\\Documents\\Fatec\\LES\\ReiLeiloesCore\\ReiLeilaoCore\\ReiLeilaoCore.csproj",
       "projectName": "ReiLeilaoCore",
-      "projectPath": "C:\\Users\\thale\\OneDrive\\Documents\\Fatec\\LES\\ReiLeilaoCore\\ReiLeilaoCore\\ReiLeilaoCore.csproj",
+      "projectPath": "C:\\Users\\thale\\OneDrive\\Documents\\Fatec\\LES\\ReiLeiloesCore\\ReiLeilaoCore\\ReiLeilaoCore.csproj",
       "packagesPath": "C:\\Users\\thale\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\thale\\OneDrive\\Documents\\Fatec\\LES\\ReiLeilaoCore\\ReiLeilaoCore\\obj\\",
+      "outputPath": "C:\\Users\\thale\\OneDrive\\Documents\\Fatec\\LES\\ReiLeiloesCore\\ReiLeilaoCore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -12,7 +12,7 @@ namespace ReiLeilaoCore.Domain
         public string UserId { get; set; }
         public string Cpf { get; set; }
         public string Rg { get; set; }
-        public DateTime BirthDate { get; set; }
+        public string BirthDate { get; set; }
         public string NickName { get; set; }
     }
 }

@@ -15,13 +15,6 @@ namespace ReiLeilaoCore.Controllers
   
     public class AddressController : ControllerBase
     {
-        // GET: api/<controller>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         // GET 
         [HttpGet("{id}")]
         public IActionResult Get(string id)

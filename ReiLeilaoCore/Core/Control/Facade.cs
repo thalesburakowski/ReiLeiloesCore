@@ -83,7 +83,7 @@ namespace ReiLeilaoCore.Core.Control
 
 
             // PROFILE FACADE
-            var ProfileDAO = new AddressDAO();
+            var ProfileDAO = new ProfileDAO();
             _daos.Add(new Profile().GetType(), ProfileDAO);
 
             // regras de negócio Profile
@@ -219,7 +219,7 @@ namespace ReiLeilaoCore.Core.Control
                 catch (Exception e)
                 {
                     Console.Write(e.StackTrace);
-                    resultado.Msg = "Não foi possí­vel realizar o login!";
+                    resultado.Msg = "Não foi possí­vel realizar essa operação!";
                 }
             }
             else
