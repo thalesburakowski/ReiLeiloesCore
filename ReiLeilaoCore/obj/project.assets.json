@@ -12556,23 +12556,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\thale\\.nuget\\packages\\": {},
+    "C:\\Users\\Mel Novais\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\thale\\OneDrive\\Documents\\Fatec\\LES\\ReiLeiloesCore\\ReiLeilaoCore\\ReiLeilaoCore.csproj",
       "projectName": "ReiLeilaoCore",
       "projectPath": "C:\\Users\\thale\\OneDrive\\Documents\\Fatec\\LES\\ReiLeiloesCore\\ReiLeilaoCore\\ReiLeilaoCore.csproj",
       "packagesPath": "C:\\Users\\thale\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\thale\\OneDrive\\Documents\\Fatec\\LES\\ReiLeiloesCore\\ReiLeilaoCore\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\Mel Novais\\Documents\\FATEC\\Projeto\\ReiLeiloesCore\\ReiLeilaoCore\\ReiLeilaoCore.csproj",
+      "projectName": "ReiLeilaoCore",
+      "projectPath": "C:\\Users\\Mel Novais\\Documents\\FATEC\\Projeto\\ReiLeiloesCore\\ReiLeilaoCore\\ReiLeilaoCore.csproj",
+      "packagesPath": "C:\\Users\\Mel Novais\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mel Novais\\Documents\\FATEC\\Projeto\\ReiLeiloesCore\\ReiLeilaoCore\\obj\\",
+>>>>>>> d19fe35bb5c402cd122bcdc1c56f3a7b96fafcce
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\thale\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mel Novais\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
