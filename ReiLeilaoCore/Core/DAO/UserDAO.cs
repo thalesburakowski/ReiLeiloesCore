@@ -85,7 +85,7 @@ namespace ReiLeilaoCore.Core.DAO
             }
 
 
-            if (User.FlagAdmin)
+            if (User.FlgAdmin)
             {
                 json = new RestConnection().PostRequest("admin", body);
 
